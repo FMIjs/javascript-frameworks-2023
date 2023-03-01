@@ -55,3 +55,15 @@ export function logPerson(user: unknown) {
 console.log('Users:');
 users.forEach(logPerson);
 ```
+
+
+### Задача X (Advanced)
+
+Нека си поиграем с typescript-a така, че в зависимост от подадените параметри на функцията, върната стойност да е или `string`, или `Date`, а не `string | Date`
+
+```ts
+const formatDate(timestamp: number, toDate?: boolean): string | Date {
+  const date = new Date(timestamp);
+  return toDate ? date : `${date.getHours()}:${date.getMinutes()}`;
+}
+```

@@ -57,7 +57,7 @@ users.forEach(logPerson);
 ```
 
 
-### Задача X (Advanced)
+### Задача X
 
 Нека си поиграем с typescript-a така, че в зависимост от подадените параметри на функцията, върната стойност да е или `string`, или `Date`, а не `string | Date`
 
@@ -67,3 +67,6 @@ const formatDate(timestamp: number, toDate?: boolean): string | Date {
   return toDate ? date : `${date.getHours()}:${date.getMinutes()}`;
 }
 ```
+
+### Екстра Задачки
+https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts

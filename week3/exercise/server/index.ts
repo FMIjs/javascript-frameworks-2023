@@ -1,4 +1,5 @@
-import express, {Application} from 'express';
+import express from 'express'
+import {Application} from 'express';
 import http from "http";
 import {apiRouter} from "./api";
 import {StorageService} from "./lib/storage-service";
@@ -9,6 +10,7 @@ const server = http.createServer(app);
 const port = 8050;
 
 app.use(express.json());
+app.use(express.static('public'))
 
 app.use('/api', apiRouter);
 

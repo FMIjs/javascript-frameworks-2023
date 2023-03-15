@@ -8,5 +8,5 @@
     "moduleResolution": "node",
     "experimentalDecorators": true
   },
-  "files": ["src/_index.ts"]
+  "files": ["src/index.ts"]
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOs Demo</title>
+    <link type="text/css" rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="/index.js"></script>
+</head>
+<body onload="fetchTodos()">
+<h1>My TODO List</h1>
+<main>
+    <form onsubmit="handleSubmit(event)" id="todo-form" style="border: 1px solid black">
+        <div id="todo-types">
+            <div>
+                <input name="todo-type" type="radio" value="basic" id="todo-type-basic" checked onclick="handleTodoTypeChange('basic')">
+                <label for="todo-type-basic">Basic</label>
+            </div>
+            <div>
+                <input name="todo-type" type="radio" value="timed" id="todo-type-timed" onclick="handleTodoTypeChange('timed')">
+                <label for="todo-type-timed">Timed</label>
+            </div>
+            <div>
+                <input name="todo-type" type="radio" value="advanced" id="todo-type-advanced" onclick="handleTodoTypeChange('advanced')">
+                <label for="todo-type-advanced">Advanced</label>
+            </div>
+        </div>
+
+        <div id="todo-form-inputs">
+            <div>
+                <input name="description" placeholder="Description" required>
+            </div>
+        </div>
+
+        <div id="todo-form-buttons">
+            <button>Submit</button>
+            <button type="reset">Clear</button>
+        </div>
+
+
+    </form>
+    <div id="todos-wrapper"/>
+</main>
+</body>
+</html>

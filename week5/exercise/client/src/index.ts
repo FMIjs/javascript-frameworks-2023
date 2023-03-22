@@ -7,7 +7,7 @@ function storeFactory<S>(
 ) {
   const state$$ = new BehaviorSubject<S>(initialState);
   return {
-    select: (selector: (state: S) => S[keyof S]) => {
+    select: <R>(selector: (state: S) => R) => {
       return state$$.pipe(map(selector));
     },
     dispatch: (action: Action | ActionWithPayload) => {
@@ -21,17 +21,42 @@ function storeFactory<S>(
   };
 }
 
-const store = storeFactory({ count: 0 }, (state, action) => {
-  if (action instanceof Increment) {
-    return { ...state, count: state.count + 1 };
+interface IState {
+  count: number;
+  user: {
+    name: string
   }
-  if (action instanceof IncrementWith) {
-    return { ...state, count: state.count + action.payload };
+}
+
+const store = storeFactory<IState>(
+  {
+    count: 0,
+    user: {
+      name: 'Ivan'
+    }
+  },
+  (state, action) => {
+    if (action instanceof Increment) {
+      return { ...state, count: state.count + 1 };
+    }
+    if (action instanceof IncrementWith) {
+      return { ...state, count: state.count + action.payload };
+    }
+  }
+);
+
+const counterContainer = document.getElementById('counter-container');
+const incrementBtn = document.getElementById('increment-btn');
+
+const count$ = store.select(state => state.count);
+
+const userName$ = store.select(state => state.user.name);
+
+count$.subscribe({
+  next: value => {
+    counterContainer.innerHTML = value.toString();
   }
 });
 
-const count$ = store.select(state => state.count);
-count$.subscribe({ next: value => console.log(value) });
-
-store.dispatch(new Increment());
-store.dispatch(new IncrementWith(10));
+incrementBtn.addEventListener('click', () => { store.dispatch(new Increment()); })
+// store.dispatch(new IncrementWith(10));

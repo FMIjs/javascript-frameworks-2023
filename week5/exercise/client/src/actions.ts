@@ -1,4 +1,13 @@
 import { IUser } from './interfaces-and-types';
+
+export interface ActionConstructor {
+  new(): Action
+}
+
+export interface ActionWithPayloadConstructor<T> {
+  new(data: T): ActionWithPayload<T>
+}
+
 export class Action {
   constructor(
     public type: string
@@ -37,6 +46,6 @@ export class LoadUsersSuccess extends ActionWithPayload<IUser[]> {
 
 export class LoadUsersFailure extends ActionWithPayload<Error> {
   constructor(error: Error) {
-    super('loadUsersSuccess', error);
+    super('LoadUsersFailure', error);
   }
 }

@@ -1,6 +1,7 @@
 import { Increment, IncrementWith, LoadUsersFailure, LoadUsersSuccess } from './actions';
 import { IUser } from './interfaces-and-types';
 import { storeFactory } from './store-factory';
+import { init } from './create-effect';
 
 interface IState {
   count: number;
@@ -30,3 +31,5 @@ export const store = storeFactory<IState>(
     return state;
   }
 );
+
+export const createEffect = init(store);

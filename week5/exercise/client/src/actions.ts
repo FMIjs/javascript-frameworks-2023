@@ -1,23 +1,22 @@
 import { IUser } from './interfaces-and-types';
 
-export interface ActionConstructor {
-  new(): Action
+export interface ActionConstructor<T extends string = string> {
+  new(type: T): ActionType;
 }
 
-export interface ActionWithPayloadConstructor<T> {
-  new(data: T): ActionWithPayload<T>
+export class ActionType<T extends string = string> {
+  constructor(public type: T) { }
 }
 
-export class Action {
-  constructor(
-    public type: string
-  ) { }
+export const Action: ActionConstructor = ActionType;
+
+export type ActionWithPayloadConstructor<P extends object = object, T extends string = string> = {
+  new(payload: P): ActionType<T> & P
 }
 
-export class ActionWithPayload<T = any> extends Action {
-  constructor(type: string, public payload: T) {
-    super(type);
-  }
+export class ActionWithPayloadType<P extends object = object, T extends string = string> {
+  type: T;
+  constructor(public payload: P) { }
 }
 
 export class Increment extends Action {
@@ -26,9 +25,9 @@ export class Increment extends Action {
   }
 }
 
-export class IncrementWith extends ActionWithPayload<number> {
-  constructor(incrementWith: number) {
-    super('increment', incrementWith);
+export class IncrementWith extends Action {
+  constructor(public incrementWith: number) {
+    super('increment');
   }
 }
 
@@ -38,14 +37,14 @@ export class LoadUsers extends Action {
   }
 }
 
-export class LoadUsersSuccess extends ActionWithPayload<IUser[]> {
-  constructor(users: IUser[]) {
-    super('loadUsersSuccess', users);
+export class LoadUsersSuccess extends Action {
+  constructor(public users: IUser[]) {
+    super('loadUsersSuccess');
   }
 }
 
-export class LoadUsersFailure extends ActionWithPayload<Error> {
-  constructor(error: Error) {
-    super('LoadUsersFailure', error);
+export class LoadUsersFailure extends Action {
+  constructor(public error: Error) {
+    super('LoadUsersFailure');
   }
 }

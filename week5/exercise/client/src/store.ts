@@ -20,13 +20,13 @@ export const store = storeFactory<IState>(
       return { ...state, count: state.count + 1 };
     }
     if (action instanceof IncrementWith) {
-      return { ...state, count: state.count + action.payload };
+      return { ...state, count: state.count + action.incrementWith };
     }
     if (action instanceof LoadUsersSuccess) {
-      return { ...state, users: action.payload };
+      return { ...state, users: action.users };
     }
     if (action instanceof LoadUsersFailure) {
-      return { ...state, loadUsersError: action.payload }
+      return { ...state, loadUsersError: action.error }
     }
     return state;
   }

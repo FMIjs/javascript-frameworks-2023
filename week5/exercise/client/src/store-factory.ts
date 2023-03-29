@@ -1,7 +1,7 @@
-import { Subject, BehaviorSubject, withLatestFrom, map } from "rxjs";
-import { Action, ActionWithPayload } from "./actions";
+import { Subject, BehaviorSubject, withLatestFrom, map, distinctUntilChanged } from "rxjs";
+import { ActionType } from "./actions";
 
-export function storeFactory<S, A = Action | ActionWithPayload>(
+export function storeFactory<S, A = ActionType>(
   initialState: S,
   reducerFn: (state: S, action: A) => S
 ) {
@@ -18,7 +18,7 @@ export function storeFactory<S, A = Action | ActionWithPayload>(
   });
 
   return {
-    select: <R>(selector: (state: S) => R) => state$$.pipe(map(selector)),
+    select: <R>(selector: (state: S) => R) => state$$.pipe(map(selector), distinctUntilChanged()),
     dispatch: (action: A) => actions$$.next(action),
     actions$: actions$$.asObservable()
   };

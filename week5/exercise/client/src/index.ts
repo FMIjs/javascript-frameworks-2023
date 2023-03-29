@@ -34,6 +34,7 @@ isLoadingUsers$.subscribe({
 
 count$.subscribe({
   next: value => {
+    console.log(value);
     counterContainer.innerHTML = value.toString();
   }
 });

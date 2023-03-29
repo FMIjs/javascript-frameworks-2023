@@ -8,4 +8,5 @@ export interface ITodo {
 
 export interface ITodoState {
     todos: ITodo[];
+    titleFilter: string;
 }

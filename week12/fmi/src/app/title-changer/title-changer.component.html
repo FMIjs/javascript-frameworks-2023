@@ -1,0 +1,10 @@
+<input #titleInput (input)="inputHandler($event)" type="text" [value]="title">
+<!-- 
+    const input_1 = createElement('input');
+    listenForEvent(input_1, 'input', ($event) => inputHandler($event));
+  -->
+<button (click)="changeTitleHandler(titleInput)">Change title</button>
+<!-- 
+    const btn_1 = createElement('button');
+    listenForEvent(btn_1, 'click', ($event) => changeTitleHandler(input_1));
+  -->

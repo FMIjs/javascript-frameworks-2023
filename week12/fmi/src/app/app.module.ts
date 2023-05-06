@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { TitleChangerComponent } from './title-changer/title-changer.component';
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,9 +12,20 @@ import { TitleChangerComponent } from './title-changer/title-changer.component';
     TitleChangerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'test',
+      useValue: 'TEST'
+    },
+    // {
+    //   provide: Users,
+    //   useClass: Users
+    // }
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

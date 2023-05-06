@@ -12,7 +12,6 @@ export class TitleChangerComponent {
 
   changeTitleHandler(inputEl: HTMLInputElement) {
     const title = inputEl.value;
-    inputEl.value = '';
     this.changeTitle.emit(title);
   }
 
@@ -20,3 +19,12 @@ export class TitleChangerComponent {
     console.log('Input was changed', (event.target as HTMLInputElement).value);
   }
 }
+
+
+// Monkey patching
+// const _setTimeout = window.setTimeout;
+
+// window.setTimeout = function (...args: any[]) {
+//   console.log('setTimeout was called');
+//   return _setTimeout(...args);
+// }

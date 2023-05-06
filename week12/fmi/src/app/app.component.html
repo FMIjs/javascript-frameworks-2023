@@ -1,2 +1,22 @@
 <div class="test">{{title}}</div>
 <app-title-changer [title]="title" (changeTitle)="changeTitleHandler($event)"></app-title-changer>
+
+<div *ngIf="users !== null">
+  <div *ngIf="isLoading">Loading...</div>
+  <div *ngIf="!isLoading">
+    <h2>Users</h2>
+    <ul id="users">
+      <li *ngFor="let user of users" class="user">
+        {{user.name}}
+      </li>
+    </ul>
+  </div>
+</div>
+<div *ngIf="users === null">
+  Press load users btn to load users
+</div>
+
+<button [disabled]="isLoading" [ngStyle]="{ color: !isLoading ? 'black' : 'red' }" (click)="loadUsers()">Load
+  users</button>
+
+<input type="text" value="sdaad">

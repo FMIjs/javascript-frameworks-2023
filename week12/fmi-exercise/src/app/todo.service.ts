@@ -5,8 +5,6 @@ import { ITodo } from './interfaces';
 export class TodoService {
   todoList: ITodo[] = [];
 
-  constructor() { }
-
   addTodo(text: string): void {
     this.todoList.push({ text, completed: false });
   }

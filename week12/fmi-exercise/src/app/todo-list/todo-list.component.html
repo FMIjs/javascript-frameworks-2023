@@ -1,0 +1,6 @@
+<ul id="todo-list">
+  <li *ngFor="let todo of todoList">
+    <app-todo [text]="todo.text" [completed]="todo.completed" (toggleCompleted)="toggleCompletedHandler(todo)"
+      (remove)="removeHandler(todo)"></app-todo>
+  </li>
+</ul>

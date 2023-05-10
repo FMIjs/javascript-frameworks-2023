@@ -1,0 +1,8 @@
+<div id="todo">
+  <div id="text">{{text}}</div>
+  <div id="actions">
+    <button *ngIf="completed" (click)="toggleCompletedHandler()">Undo complete</button>
+    <button *ngIf="!completed" (click)="toggleCompletedHandler()">Complete</button>
+    <button (click)="removeHandler()">Remove</button>
+  </div>
+</div>

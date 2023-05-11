@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { ITodo } from './interfaces';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TodoService {
   todoList: ITodo[] = [];
 
   addTodo(text: string): void {
-    this.todoList.push({ text, completed: false });
+    // this.todoList.push({ text, completed: false });
+    // this.todoList = this.todoList.concat({ text, completed: false });
+    this.todoList = [...this.todoList, { text, completed: false }];
   }
 
   removeTodo(todo: ITodo): void {
@@ -17,5 +21,4 @@ export class TodoService {
   toggleCompleted(todo: ITodo) {
     todo.completed = !todo.completed;
   }
-
 }

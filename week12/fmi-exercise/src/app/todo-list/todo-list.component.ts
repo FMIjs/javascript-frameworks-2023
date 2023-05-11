@@ -8,7 +8,11 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent {
-  todoList: ITodo[] = this.todoService.todoList;
+  // todoList: ITodo[] = this.todoService.todoList;
+
+  get todoList() {
+    return this.todoService.todoList;
+  }
 
   constructor(
     private todoService: TodoService

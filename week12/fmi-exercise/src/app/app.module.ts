@@ -17,7 +17,7 @@ import { TodoService } from './todo.service';
   imports: [
     BrowserModule
   ],
-  providers: [TodoService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

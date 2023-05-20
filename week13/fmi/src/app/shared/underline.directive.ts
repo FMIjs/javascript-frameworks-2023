@@ -1,7 +1,8 @@
 import { Directive, ElementRef, Input, SimpleChange, SimpleChanges } from '@angular/core';
 
 @Directive({
-  selector: '[appUnderline]'
+  selector: '[appUnderline]',
+  exportAs: 'underline'
 })
 export class UnderlineDirective {
 

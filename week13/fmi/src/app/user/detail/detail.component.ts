@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-detail',
@@ -7,11 +7,20 @@ import { AfterViewInit, Component, ContentChild, ElementRef, Input, ViewChild } 
 })
 export class DetailComponent implements AfterViewInit {
   @Input() user: any;
+  @Output() newUser = new EventEmitter<string>();
   @ViewChild('myInput') myInput!: ElementRef<HTMLInputElement>;
   @ContentChild('myDiv') myDiv!: ElementRef<HTMLInputElement>;
 
   ngAfterViewInit() {
     console.log('View was created', this.myInput);
+  }
+
+  // getUserGroupNames(user: any) {
+  //   return user.groups.map((g: any) => g.name);
+  // }
+
+  handler($event: any) {
+    this.newUser.emit($event);
   }
 
   ngAfterContentInit() {

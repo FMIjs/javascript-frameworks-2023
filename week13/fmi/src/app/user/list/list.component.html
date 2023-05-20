@@ -13,7 +13,7 @@
   <app-detail [user]="selectedUser"></app-detail>
 </ng-template> -->
 
-<app-detail *appMyIf="selectedUser" [user]="selectedUser"></app-detail>
+<app-detail *ngIf="selectedUser" [user]="selectedUser" (newUser)="newUserHandler($event)"></app-detail>
 
 <!-- 
   const appDetail document.createElement('app-detail');

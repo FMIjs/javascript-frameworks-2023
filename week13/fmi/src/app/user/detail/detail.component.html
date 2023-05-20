@@ -1,4 +1,7 @@
 <input #myInput type="text">
-{{user | json}}
+<button (click)="handler(myInput.value)">BTN</button>
 
+<div *ngFor="let gName of (user | userGroupNames)">{{gName}}</div>
+
+{{user | json}}
 <ng-content></ng-content>

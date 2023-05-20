@@ -1,9 +1,10 @@
-import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnChanges, OnDestroy, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[appMyIf]'
+  selector: '[appMyIf]',
+  exportAs: 'myIf'
 })
-export class MyIfDirective implements OnChanges {
+export class MyIfDirective implements OnChanges, OnDestroy {
 
   @Input() appMyIf = false;
 
@@ -18,6 +19,10 @@ export class MyIfDirective implements OnChanges {
     } else {
       this.viewContainerRef.clear();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.viewContainerRef.clear();
   }
 
 }

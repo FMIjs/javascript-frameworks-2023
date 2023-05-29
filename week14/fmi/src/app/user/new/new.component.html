@@ -1,0 +1,19 @@
+<form #form="ngForm" (ngSubmit)="onFormSubmit(form.value)">
+  <div class="input-group">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" #nameModel="ngModel" ngModel required minlength="4" appContains="!!!">
+    <div *ngIf="nameModel.touched && nameModel.invalid">
+      <div *ngIf="nameModel.getError('required')">This field is required</div>
+      <div *ngIf="nameModel.getError('minlength'); let minlength">Min length is {{minlength.requiredLength}} and the
+        current length is {{minlength.actualLength}}</div>
+      <div *ngIf="nameModel.getError('mustContain'); let mustContainError;">Field must contain {{mustContainError}}
+      </div>
+    </div>
+  </div>
+  <div class="input-group">
+    <label for="age">Age</label>
+    <!-- two way data binding can be skipped in general -->
+    <input id="age" type="text" name="age" [(ngModel)]="age" required>
+  </div>
+  <button [disabled]="form.invalid">Save</button>
+</form>

@@ -1,0 +1,23 @@
+<ul>
+  <li *ngFor="let user of users" (click)="selectUserHandler(user)" [appUnderline]="user.id === selectedUser?.id">
+    {{user.name}}
+  </li>
+</ul>
+<!-- <app-detail *ngIf="selectedUser" [user]="selectedUser">
+  <div #myDiv>
+    <div>HELLO!</div>
+  </div>
+</app-detail> -->
+
+<!-- <ng-template [appMyIf]="selectedUser">
+  <app-detail [user]="selectedUser"></app-detail>
+</ng-template> -->
+
+<app-detail *ngIf="selectedUser" [user]="selectedUser" (newUser)="newUserHandler($event)"></app-detail>
+
+<!-- 
+  const appDetail document.createElement('app-detail');
+  appDetail.user = { id: 1, name: 'ivan' };
+  ...
+  appDetail.ngOnInit();
+-->

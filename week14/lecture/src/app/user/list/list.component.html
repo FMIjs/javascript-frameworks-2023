@@ -1,0 +1,8 @@
+<ul>
+  <!-- <li *ngFor="let user of (users$ | async)"> -->
+  <li *ngFor="let user of users">
+    <a [routerLink]="['.', user.id]">
+      {{user.name}}
+    </a>
+  </li>
+</ul>

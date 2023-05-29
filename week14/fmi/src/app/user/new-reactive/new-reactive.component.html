@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="submitFormHandler()">
+  <div class="input-group">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" formControlName="name">
+    <div *ngIf="getFormControl('name').touched && getFormControl('name').invalid">
+      <div *ngIf="getFormControl('name').getError('required')">This field is required</div>
+      <div *ngIf="getFormControl('name').getError('minlength'); let minlength">Min length is
+        {{minlength.requiredLength}} and the
+        current length is {{minlength.actualLength}}</div>
+      <div *ngIf="getFormControl('name').getError('mustContain'); let mustContainError;">Field must contain
+        {{mustContainError}}
+      </div>
+    </div>
+  </div>
+  <div class="input-group">
+    <label for="age">Age</label>
+    <!-- two way data binding can be skipped in general -->
+    <input id="age" type="text" name="age" [formControl]="getFormControl('age')">
+  </div>
+  <button [disabled]="form.invalid">Save</button>
+</form>
+
+{{form.value | json}}

@@ -1,0 +1,14 @@
+<a routerLink="..">Back to users</a>
+
+<ng-container *ngIf="user; else loading">
+  <h1>{{ user.name }}</h1>
+  <h2>{{ user.username }}</h2>
+  
+  <br>
+  
+  {{user | json}}
+</ng-container>
+
+<ng-template #loading>
+  User data loading ...
+</ng-template>
